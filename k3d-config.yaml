@@ -1,0 +1,41 @@
+# k3d-config.yaml
+# K3d cluster configuration for local development
+
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: dev-cluster
+servers: 1
+agents: 1
+image: rancher/k3s:v1.28.5-k3s1
+ports:
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
+  - port: 8443:443
+    nodeFilters:
+      - loadbalancer
+registries:
+  create:
+    name: registry.localhost
+    host: "0.0.0.0"
+    hostPort: "5000"
+  config: |
+    mirrors:
+      "registry.localhost:5000":
+        endpoint:
+          - http://registry.localhost:5000
+options:
+  k3d:
+    wait: true
+    timeout: "120s"
+    disableLoadbalancer: false
+    disableImageVolume: false
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik
+        nodeFilters:
+          - server:*
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true

@@ -1,0 +1,34 @@
+# .gitignore
+# Files to exclude from version control
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Tilt
+.tilt-build/
+tilt_modules/
+
+# Local development
+.env
+.env.local
+*.local
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/

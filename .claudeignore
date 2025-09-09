@@ -1,0 +1,18 @@
+# .claudeignore
+# Files to exclude from Claude context
+
+# Build artifacts
+.tilt-build/
+tilt_modules/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Large manifests
+vendor/
+node_modules/
